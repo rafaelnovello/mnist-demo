@@ -1,0 +1,4 @@
+Flask==0.12.1
+tensorflow==1.0.1
+tflearn==0.3
+Pillow==4.1.0
