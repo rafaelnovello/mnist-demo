@@ -33,7 +33,7 @@ def build_model():
 
 # criação e carregamento do modelo
 model = build_model()
-model.load('MNIST.tfl')
+model.load(os.path.abspath('.') + '/MNIST.tfl')
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
