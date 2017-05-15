@@ -14,7 +14,7 @@ from time import sleep
 import tensorflow as tf
 import tflearn
 
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__)
 
 
 def build_model():
