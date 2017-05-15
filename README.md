@@ -1,8 +1,10 @@
 # Aplicativo de identificação de digitos escritos manualmente.
 
+## [Demo Online](https://flask-mnist.herokuapp.com/)
+
 ## Instalação
 
-**Para baixar apenas este diretório, [click AQUI](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/rafaelnovello/Deep-Learning-Foundation/tree/master/MNIST)**
+Clone o repositório ou baixe o pacote zip.
 
 Instale os pacotes necessários:
 
