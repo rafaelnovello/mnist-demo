@@ -14,7 +14,20 @@ from datetime import datetime
 import tensorflow as tf
 import tflearn
 
+import cloudinary
+import cloudinary.uploader
+
 app = Flask(__name__)
+# cloudinary.config(
+#     cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+#     api_key=os.environ.get('CLOUDINARY_API_KEY'),
+#     api_secret=os.environ.get('CLOUDINARY_API_SECRET')
+# )
+cloudinary.config( 
+    cloud_name = "hhwvbypoo", 
+    api_key = "626252759833149", 
+    api_secret = "lSXq5C-29nUAUtSj9pYgkchHFFo" 
+)
 
 
 def build_model():
@@ -99,12 +112,8 @@ def get_answer(y):
 def save_image(img, name):
     now = datetime.now().strftime('%Y%m%d%H%M%S')
     name = '%s-%s.png' % (name, now)
-    path = os.path.dirname(os.path.abspath(__file__))
-    path = os.path.join(path, 'images')
-    if not os.path.exists(path):
-        os.makedirs(path)
-    path = os.path.join(path, name)
-    img.save(path)
+    img.save('/tmp/'+name)
+    cloudinary.uploader.upload('/tmp/'+name)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
