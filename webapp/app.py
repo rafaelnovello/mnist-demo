@@ -9,7 +9,7 @@ import base64
 import numpy as np
 from PIL import Image
 from io import BytesIO
-from time import sleep
+from datetime import datetime
 
 import tensorflow as tf
 import tflearn
@@ -35,6 +35,7 @@ def build_model():
 model = build_model()
 model.load(os.path.dirname(os.path.abspath(__file__)) + '/MNIST.tfl')
 
+
 @app.route('/', methods=['POST', 'GET'])
 def home():
     resp = None
@@ -46,12 +47,13 @@ def home():
         img = resize(img, 28)
         X = do_array(img)
         X = X.reshape(784)
-        # import pdb; pdb.set_trace()
+
         try:
             y = model.predict([X])
             resp = get_answer(y)
         except:
             resp = None
+        save_image(img, resp)
     return render_template('teste.html', resposta=resp)
 
 
@@ -93,6 +95,16 @@ def get_answer(y):
     best = max(y[0])
     return y[0].index(best)
 
+
+def save_image(img, name):
+    now = datetime.now().strftime('%Y%m%d%H%M%S')
+    name = '%s-%s.png' % (name, now)
+    path = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(path, 'images')
+    if not os.path.exists(path):
+        os.makedirs(path)
+    path = os.path.join(path, name)
+    img.save(path)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
