@@ -18,15 +18,10 @@ import cloudinary
 import cloudinary.uploader
 
 app = Flask(__name__)
-# cloudinary.config(
-#     cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
-#     api_key=os.environ.get('CLOUDINARY_API_KEY'),
-#     api_secret=os.environ.get('CLOUDINARY_API_SECRET')
-# )
-cloudinary.config( 
-    cloud_name = "hhwvbypoo", 
-    api_key = "626252759833149", 
-    api_secret = "lSXq5C-29nUAUtSj9pYgkchHFFo" 
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET')
 )
 
 
@@ -112,8 +107,9 @@ def get_answer(y):
 def save_image(img, name):
     now = datetime.now().strftime('%Y%m%d%H%M%S')
     name = '%s-%s.png' % (name, now)
-    img.save('/tmp/'+name)
-    cloudinary.uploader.upload('/tmp/'+name)
+    path = '/tmp/%s' % name
+    img.save(path)
+    cloudinary.uploader.upload(path, public_id=name)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
