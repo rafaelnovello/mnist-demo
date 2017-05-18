@@ -62,7 +62,12 @@ def home():
         except:
             resp = None
         save_image(img, resp)
-    return render_template('teste.html', resposta=resp)
+
+    download = cloudinary.utils.download_zip_url(
+        prefixes='mnist',
+        resource_type='image'
+    )
+    return render_template('teste.html', resposta=resp, link=download)
 
 
 def resize(img, width):
@@ -109,6 +114,7 @@ def save_image(img, name):
     name = '%s-%s.png' % (name, now)
     path = '/tmp/%s' % name
     img.save(path)
+    name = 'mnist/%s' % name
     cloudinary.uploader.upload(path, public_id=name)
 
 if __name__ == "__main__":
