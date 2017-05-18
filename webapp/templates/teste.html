@@ -14,7 +14,7 @@
     <script type="text/javascript">
       $(function() {
         $('#simple_sketch').sketch();
-        $('#simple_sketch').sketch('size', 10);
+        $('#simple_sketch').sketch('size', 20);
         $('#doit').click(function(){
           var canvas = $('#simple_sketch')[0];
           var data = canvas.toDataURL();
@@ -31,6 +31,7 @@
       <h1>MNIST</h1>
       <p>Desenhe um número de 0 a 9 no quadro a esquerda e veja se nossa Inteligência Artificial consegue acertar o número desenhado!</p>
     </div>
+    <br>
     <div class="row text-center">
       <div class="col-xs-offset-1 col-xs-5">
         <form method="post" action="" enctype="multipart/form-data">
@@ -45,6 +46,10 @@
       </div>
       <h1>Você desenhou:</h1><br>
       <h1>{{resposta}}</h1>
+    </div>
+    <br>
+    <div class="row text-center">
+      <p>Quer saber como isto funciona? Veja o <a href="https://github.com/rafaelnovello/mnist-demo" target="_blank">repositório do projeto</a></p>
     </div>
   </body>
 </html>      
