@@ -12,17 +12,24 @@
       }
     </style>
     <script type="text/javascript">
+      function clearCanvas(canvas) {
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        $('#simple_sketch').sketch('actions',[]);
+      }
+
       $(function() {
         $('#simple_sketch').sketch();
         $('#simple_sketch').sketch('size', 20);
-        $('#doit').click(function(){
+        $('#submit').click(function(){
           var canvas = $('#simple_sketch')[0];
           var data = canvas.toDataURL();
-          $('#hidden').val(data);
-          $('form')[0].submit();
           event.preventDefault();
+          $.post("/predict/", {'canvas': data}, function(resp){
+            $("#response").html(resp);
+            clearCanvas(canvas);
+          });
         });
-        
       });
     </script>
     <script>
@@ -48,13 +55,13 @@
           <input name="canvas" id="hidden" placeholder="question one" type="hidden" accept="image/*"/>
           <div class="tools">
             <!--input type="submit" class="button" id="send" value="Enviar"/-->
-            <button id="doit">Enviar</button>
+            <button id="submit">Enviar</button>
           </div>
         </form>
         <image id="theimage" ></image>
       </div>
       <h1>Você desenhou:</h1><br>
-      <h1>{{resposta}}</h1>
+      <h1 id="response">...</h1>
     </div>
     <br>
     <div class="row text-center">

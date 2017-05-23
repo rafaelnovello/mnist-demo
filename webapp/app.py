@@ -2,6 +2,7 @@
 import os
 from flask import Flask
 from flask import request
+from flask import jsonify
 from flask import render_template
 
 import PIL
@@ -44,30 +45,33 @@ model = build_model()
 model.load(os.path.dirname(os.path.abspath(__file__)) + '/MNIST.tfl')
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['GET'])
 def home():
-    resp = None
-    if request.method == 'POST':
-        data = request.form['canvas']
-        data = base64.b64decode(data.replace('data:image/png;base64,', ''))
-        img = Image.open(BytesIO(data))
-        img = fill_background(img)
-        img = resize(img, 28)
-        X = do_array(img)
-        X = X.reshape(784)
-
-        try:
-            y = model.predict([X])
-            resp = get_answer(y)
-        except:
-            resp = None
-        save_image(img, resp)
-
     download = cloudinary.utils.download_zip_url(
         prefixes='mnist',
         resource_type='image'
     )
-    return render_template('teste.html', resposta=resp, link=download)
+    return render_template('teste.html', link=download)
+
+
+@app.route('/predict/', methods=['POST'])
+def bla():
+    data = request.form['canvas']
+    data = base64.b64decode(data.replace('data:image/png;base64,', ''))
+    img = Image.open(BytesIO(data))
+    img = fill_background(img)
+    img = resize(img, 28)
+    X = do_array(img)
+    X = X.reshape(784)
+
+    try:
+        y = model.predict([X])
+        resp = get_answer(y)
+    except:
+        resp = None
+
+    save_image(img, resp)
+    return jsonify(resp)
 
 
 def resize(img, width):
