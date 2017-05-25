@@ -47,11 +47,7 @@ model.load(os.path.dirname(os.path.abspath(__file__)) + '/MNIST.tfl')
 
 @app.route('/', methods=['GET'])
 def home():
-    download = cloudinary.utils.download_zip_url(
-        prefixes='mnist',
-        resource_type='image'
-    )
-    return render_template('teste.html', link=download)
+    return render_template('teste.html')
 
 
 @app.route('/predict/', methods=['POST'])
