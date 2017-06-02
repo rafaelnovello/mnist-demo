@@ -1,0 +1,56 @@
+# English translations for PROJECT.
+# Copyright (C) 2017 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-06-02 12:36-0300\n"
+"PO-Revision-Date: 2017-06-02 12:45-0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.4.0\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: templates/home.html:48
+msgid ""
+"Desenhe um número de 0 a 9 no quadro a esquerda e veja se nossa Inteligência "
+"Artificial consegue acertar o número desenhado!"
+msgstr ""
+"Draw a number from 0 to 9 in the left frame and see if our Artificial "
+"Intelligence can hit the number drawn!"
+
+#: templates/home.html:58
+msgid "Enviar"
+msgstr "Submit"
+
+#: templates/home.html:63
+msgid "Você desenhou:"
+msgstr "You drew:"
+
+#: templates/home.html:68
+msgid "Quer saber como isto funciona? Veja o "
+msgstr "Want to know how this works? See the"
+
+#: templates/home.html:68
+msgid "repositório do projeto"
+msgstr "project repo"
+
+#: templates/home.html:69
+msgid "Baixe o dataset validado desta demo "
+msgstr "Download the validated dataset of this demo"
+
+#: templates/home.html:70
+msgid "aqui!"
+msgstr "here!"
+
+#: templates/home.html:71
+msgid "Mais informações no README do dataset."
+msgstr "More info on datase README"

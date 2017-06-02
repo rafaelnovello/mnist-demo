@@ -45,7 +45,7 @@
   <body>
     <div class="row text-center">
       <h1>MNIST</h1>
-      <p>Desenhe um número de 0 a 9 no quadro a esquerda e veja se nossa Inteligência Artificial consegue acertar o número desenhado!</p>
+      <p>{{ _('Desenhe um número de 0 a 9 no quadro a esquerda e veja se nossa Inteligência Artificial consegue acertar o número desenhado!') }}</p>
     </div>
     <br>
     <div class="row text-center">
@@ -55,18 +55,20 @@
           <input name="canvas" id="hidden" placeholder="question one" type="hidden" accept="image/*"/>
           <div class="tools">
             <!--input type="submit" class="button" id="send" value="Enviar"/-->
-            <button id="submit">Enviar</button>
+            <button id="submit">{{ _('Enviar') }}</button>
           </div>
         </form>
         <image id="theimage" ></image>
       </div>
-      <h1>Você desenhou:</h1><br>
+      <h1>{{ _('Você desenhou:') }}</h1><br>
       <h1 id="response">...</h1>
     </div>
     <br>
     <div class="row text-center">
-      <p>Quer saber como isto funciona? Veja o <a href="https://github.com/rafaelnovello/mnist-demo" target="_blank">repositório do projeto</a></p>
-      <p>Baixe todas as imagens geradas nesta demo <a href="http://res.cloudinary.com/hhwvbypoo/raw/upload/v1495750591/mnist/mnist-demo-validated-data.zip" target="_blank">aqui!</a>. Os arquivos estão salvos no formato [previsão]-[data e hora].png</p>
+      <p>{{ _('Quer saber como isto funciona? Veja o ') }}<a href="https://github.com/rafaelnovello/mnist-demo" target="_blank"> {{ _('repositório do projeto') }}</a></p>
+      <p>{{ _('Baixe o dataset validado desta demo ') }}
+        <a href="http://res.cloudinary.com/hhwvbypoo/raw/upload/v1495750591/mnist/mnist-demo-validated-data.zip" target="_blank">{{ _('aqui!') }}</a>. 
+        {{ _('Mais informações no README do dataset.') }}</p>
     </div>
   </body>
-</html>      
+</html>

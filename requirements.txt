@@ -4,3 +4,4 @@ tflearn==0.3
 Pillow==4.1.0
 cloudinary==1.8.0
 requests[security]
+flask-babel

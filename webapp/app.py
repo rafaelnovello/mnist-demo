@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import os
-from flask import Flask
+
 from flask import request
 from flask import jsonify
+from flask import Flask, g
 from flask import render_template
+from flask.ext.babel import Babel
 
 import PIL
 import base64
@@ -19,6 +21,8 @@ import cloudinary
 import cloudinary.uploader
 
 app = Flask(__name__)
+babel = Babel(app)
+
 cloudinary.config(
     cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
     api_key=os.environ.get('CLOUDINARY_API_KEY'),
@@ -47,11 +51,11 @@ model.load(os.path.dirname(os.path.abspath(__file__)) + '/MNIST.tfl')
 
 @app.route('/', methods=['GET'])
 def home():
-    return render_template('teste.html')
+    return render_template('home.html')
 
 
 @app.route('/predict/', methods=['POST'])
-def bla():
+def predict():
     data = request.form['canvas']
     data = base64.b64decode(data.replace('data:image/png;base64,', ''))
     img = Image.open(BytesIO(data))
@@ -116,6 +120,12 @@ def save_image(img, name):
     img.save(path)
     name = 'mnist/%s' % name
     cloudinary.uploader.upload(path, public_id=name)
+
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(['pt', 'en'])
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
